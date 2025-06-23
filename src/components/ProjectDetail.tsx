@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowLeft, MapPin, Calendar, Users, Building, CheckCircle, Star, Phone, Mail, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, MapPin, Calendar, Users, Building, CheckCircle, Star, Phone, Mail, ChevronRight, ChevronLeft, X, ZoomIn } from 'lucide-react';
 
 interface ProjectDetailProps {
   projectId: string;
@@ -7,6 +7,9 @@ interface ProjectDetailProps {
 }
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
   // Project data - in a real app, this would come from an API or database
   const projectsData: { [key: string]: any } = {
     'hsg-prime-residency': {
@@ -16,9 +19,12 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
       status: "completed",
       location: "Jayanagar, Bangalore",
       images: [
-        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
-        "https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
-        "https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop"
+        "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2079246/pexels-photo-2079246.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
       ],
       units: 24,
       year: "2023",
@@ -71,9 +77,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
       status: "ongoing",
       location: "BTM Layout, Bangalore",
       images: [
-        "https://images.pexels.com/photos/2476632/pexels-photo-2476632.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
-        "https://images.pexels.com/photos/2631613/pexels-photo-2631613.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
-        "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop"
+        "https://images.pexels.com/photos/2476632/pexels-photo-2476632.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2631613/pexels-photo-2631613.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2467558/pexels-photo-2467558.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2883049/pexels-photo-2883049.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
       ],
       units: 32,
       year: "2024",
@@ -119,9 +127,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
       status: "completed",
       location: "Kanakapura Road, Bangalore",
       images: [
-        "https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
-        "https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
-        "https://images.pexels.com/photos/2518861/pexels-photo-2518861.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop"
+        "https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2518861/pexels-photo-2518861.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+        "https://images.pexels.com/photos/2518863/pexels-photo-2518863.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
       ],
       units: 50,
       year: "2022",
@@ -208,8 +218,62 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
     }
   };
 
+  const nextImage = () => {
+    setSelectedImageIndex((prev) => (prev + 1) % project.images.length);
+  };
+
+  const prevImage = () => {
+    setSelectedImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Full Screen Image Gallery Modal */}
+      {isGalleryOpen && (
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center">
+          <button
+            onClick={() => setIsGalleryOpen(false)}
+            className="absolute top-4 right-4 z-10 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          
+          <button
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          
+          <button
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+
+          <div className="w-full h-full flex items-center justify-center p-8">
+            <img
+              src={project.images[selectedImageIndex]}
+              alt={`${project.title} - Image ${selectedImageIndex + 1}`}
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {project.images.map((_: string, index: number) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImageIndex(index)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === selectedImageIndex ? 'bg-white' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -241,51 +305,100 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Hero Image Section */}
+        <div className="mb-8">
+          <div className="relative h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl group">
+            <img
+              src={project.images[selectedImageIndex]}
+              alt={`${project.title} - Main Image`}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+            
+            {/* Image Navigation */}
+            <button
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            
+            <button
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+
+            {/* Zoom Button */}
+            <button
+              onClick={() => setIsGalleryOpen(true)}
+              className="absolute top-4 right-4 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+            >
+              <ZoomIn className="h-5 w-5" />
+            </button>
+
+            {/* Project Info Overlay */}
+            <div className="absolute bottom-6 left-6 text-white">
+              <div className="flex items-center space-x-4 mb-2">
+                <div className="flex items-center space-x-2">
+                  <MapPin className="h-4 w-4" />
+                  <span className="text-sm">{project.location}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Users className="h-4 w-4" />
+                  <span className="text-sm">{project.units} Units</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Calendar className="h-4 w-4" />
+                  <span className="text-sm">{project.year}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Image Counter */}
+            <div className="absolute bottom-6 right-6 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+              {selectedImageIndex + 1} / {project.images.length}
+            </div>
+          </div>
+
+          {/* Image Thumbnails */}
+          <div className="flex space-x-3 mt-4 overflow-x-auto pb-2">
+            {project.images.map((image: string, index: number) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImageIndex(index)}
+                className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden transition-all duration-300 ${
+                  index === selectedImageIndex 
+                    ? 'ring-3 ring-amber-500 scale-105' 
+                    : 'hover:scale-105 opacity-70 hover:opacity-100'
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`${project.title} - Thumbnail ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Image Gallery */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
-                {project.images.map((image: string, index: number) => (
-                  <div key={index} className="aspect-video rounded-lg overflow-hidden">
-                    <img
-                      src={image}
-                      alt={`${project.title} - Image ${index + 1}`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Project Description */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
-              <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
-              
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <MapPin className="h-4 w-4" />
-                  <span>{project.location}</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Users className="h-4 w-4" />
-                  <span>{project.units} Units</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Calendar className="h-4 w-4" />
-                  <span>{project.year}</span>
-                </div>
-              </div>
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Overview</h2>
+              <p className="text-gray-700 leading-relaxed text-lg">{project.description}</p>
             </div>
 
             {/* Key Highlights */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Highlights</h2>
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Highlights</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {project.highlights.map((highlight: string, index: number) => (
-                  <div key={index} className="flex items-start space-x-3">
+                  <div key={index} className="flex items-start space-x-3 p-4 bg-gray-50 rounded-xl">
                     <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">{highlight}</span>
                   </div>
@@ -294,25 +407,25 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
             </div>
 
             {/* Amenities */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Amenities & Features</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Amenities & Features</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {project.amenities.map((amenity: string, index: number) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-3 text-center">
-                    <span className="text-sm text-gray-700">{amenity}</span>
+                  <div key={index} className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-4 text-center hover:shadow-md transition-shadow">
+                    <span className="text-sm font-medium text-gray-700">{amenity}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Specifications */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Specifications</h2>
-              <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Specifications</h2>
+              <div className="grid md:grid-cols-2 gap-6">
                 {Object.entries(project.specifications).map(([key, value]) => (
-                  <div key={key} className="flex justify-between py-2 border-b border-gray-100">
+                  <div key={key} className="flex justify-between items-center py-3 px-4 bg-gray-50 rounded-xl">
                     <span className="font-medium text-gray-900">{key}:</span>
-                    <span className="text-gray-700">{value as string}</span>
+                    <span className="text-gray-700 font-semibold">{value as string}</span>
                   </div>
                 ))}
               </div>
@@ -320,19 +433,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
 
             {/* Testimonials */}
             {project.testimonials && project.testimonials.length > 0 && (
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">What Investors Say</h2>
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">What Investors Say</h2>
                 <div className="space-y-6">
                   {project.testimonials.map((testimonial: any, index: number) => (
-                    <div key={index} className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center mb-3">
+                    <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
+                      <div className="flex items-center mb-4">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 text-amber-500 fill-current" />
+                          <Star key={i} className="h-5 w-5 text-amber-500 fill-current" />
                         ))}
                       </div>
-                      <p className="text-gray-700 italic mb-3">"{testimonial.content}"</p>
+                      <p className="text-gray-700 italic mb-4 text-lg">"{testimonial.content}"</p>
                       <div className="text-sm">
-                        <span className="font-medium text-gray-900">{testimonial.name}</span>
+                        <span className="font-semibold text-gray-900">{testimonial.name}</span>
                         <span className="text-gray-600"> • {testimonial.designation}</span>
                       </div>
                     </div>
@@ -347,19 +460,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
             {/* Performance Metrics */}
             {project.status === 'completed' && (
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Performance Metrics</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-6">Performance Metrics</h3>
                 <div className="space-y-4">
-                  <div className="bg-green-50 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-green-600">{project.actualReturns}</div>
-                    <div className="text-sm text-gray-600">Actual Returns</div>
-                    <div className="text-xs text-green-600">vs {project.projectedReturns} projected</div>
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center">
+                    <div className="text-3xl font-bold text-green-600 mb-1">{project.actualReturns}</div>
+                    <div className="text-sm text-gray-600 mb-1">Actual Returns</div>
+                    <div className="text-xs text-green-600 font-medium">vs {project.projectedReturns} projected</div>
                   </div>
-                  <div className="bg-blue-50 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-blue-600">{project.satisfaction}%</div>
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
+                    <div className="text-3xl font-bold text-blue-600 mb-1">{project.satisfaction}%</div>
                     <div className="text-sm text-gray-600">Investor Satisfaction</div>
                   </div>
-                  <div className="bg-amber-50 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-amber-600">{project.duration}</div>
+                  <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-6 text-center">
+                    <div className="text-3xl font-bold text-amber-600 mb-1">{project.duration}</div>
                     <div className="text-sm text-gray-600">Project Duration</div>
                   </div>
                 </div>
@@ -369,21 +482,21 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
             {/* Progress for Ongoing Projects */}
             {project.status === 'ongoing' && project.progress && (
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Project Progress</h3>
-                <div className="mb-4">
-                  <div className="flex justify-between text-sm text-gray-600 mb-2">
+                <h3 className="text-lg font-bold text-gray-900 mb-6">Project Progress</h3>
+                <div className="mb-6">
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
                     <span>Completion</span>
-                    <span>{project.progress}%</span>
+                    <span className="font-semibold">{project.progress}%</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div className="w-full bg-gray-200 rounded-full h-4">
                     <div 
-                      className="h-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"
+                      className="h-4 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-1000"
                       style={{ width: `${project.progress}%` }}
                     ></div>
                   </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-gray-900">{project.projectedReturns}</div>
+                <div className="text-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4">
+                  <div className="text-2xl font-bold text-blue-600">{project.projectedReturns}</div>
                   <div className="text-sm text-gray-600">Expected Returns</div>
                 </div>
               </div>
@@ -391,25 +504,29 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
 
             {/* Contact Information */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Get More Information</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-6">Get More Information</h3>
               <div className="space-y-4">
                 <a
                   href="tel:9844028280"
-                  className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                  className="flex items-center space-x-3 p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl hover:shadow-md transition-all duration-300 group"
                 >
-                  <Phone className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-blue-500 rounded-lg group-hover:scale-110 transition-transform">
+                    <Phone className="h-5 w-5 text-white" />
+                  </div>
                   <div>
-                    <div className="font-medium text-gray-900">Call Us</div>
+                    <div className="font-semibold text-gray-900">Call Us</div>
                     <div className="text-sm text-gray-600">9844 028 280</div>
                   </div>
                 </a>
                 <a
                   href="mailto:hsgprojects@yahoo.co.in"
-                  className="flex items-center space-x-3 p-3 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors"
+                  className="flex items-center space-x-3 p-4 bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl hover:shadow-md transition-all duration-300 group"
                 >
-                  <Mail className="h-5 w-5 text-amber-600" />
+                  <div className="p-2 bg-amber-500 rounded-lg group-hover:scale-110 transition-transform">
+                    <Mail className="h-5 w-5 text-white" />
+                  </div>
                   <div>
-                    <div className="font-medium text-gray-900">Email Us</div>
+                    <div className="font-semibold text-gray-900">Email Us</div>
                     <div className="text-sm text-gray-600">hsgprojects@yahoo.co.in</div>
                   </div>
                 </a>
@@ -419,11 +536,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
             {/* Investment CTA */}
             <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-6 text-white">
               <h3 className="text-lg font-bold mb-3">Interested in Similar Projects?</h3>
-              <p className="text-amber-100 text-sm mb-4">
+              <p className="text-amber-100 text-sm mb-6">
                 Explore our current investment opportunities and join our community of satisfied investors.
               </p>
-              <button className="w-full bg-white text-amber-600 font-semibold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+              <button 
+                onClick={onBack}
+                className="w-full bg-white text-amber-600 font-semibold py-3 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-center"
+              >
                 View Current Projects
+                <ChevronRight className="h-4 w-4 ml-2" />
               </button>
             </div>
           </div>
