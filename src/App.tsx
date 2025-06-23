@@ -13,30 +13,49 @@ import FAQ from './components/FAQ';
 import Investors from './components/Investors';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ProjectDetail from './components/ProjectDetail';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
+    setSelectedProject(null);
     setMobileMenuOpen(false);
     // Smooth scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleProjectView = (projectId: string) => {
+    setSelectedProject(projectId);
+    setCurrentPage('project-detail');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackFromProject = () => {
+    setSelectedProject(null);
+    setCurrentPage('projects');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const renderCurrentPage = () => {
+    if (currentPage === 'project-detail' && selectedProject) {
+      return <ProjectDetail projectId={selectedProject} onBack={handleBackFromProject} />;
+    }
+
     switch (currentPage) {
       case 'about':
         return <About />;
       case 'directors':
         return <Directors />;
       case 'projects':
-        return <Projects />;
+        return <Projects onProjectView={handleProjectView} />;
       case 'ongoing-projects':
-        return <OngoingProjects />;
+        return <OngoingProjects onProjectView={handleProjectView} />;
       case 'finished-projects':
-        return <FinishedProjects />;
+        return <FinishedProjects onProjectView={handleProjectView} />;
       case 'awards':
         return <Awards />;
       case 'events':
@@ -54,7 +73,7 @@ function App() {
           <>
             <Hero />
             <About />
-            <Projects />
+            <Projects onProjectView={handleProjectView} />
             <Investors />
           </>
         );
@@ -63,18 +82,20 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header 
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-      />
+      {currentPage !== 'project-detail' && (
+        <Header 
+          currentPage={currentPage}
+          onNavigate={handleNavigate}
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+        />
+      )}
       
-      <main className="relative">
+      <main className={currentPage !== 'project-detail' ? 'relative' : ''}>
         {renderCurrentPage()}
       </main>
       
-      <Footer />
+      {currentPage !== 'project-detail' && <Footer />}
     </div>
   );
 }

@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Building, MapPin, Calendar, Users, Filter, ChevronRight } from 'lucide-react';
 
-const Projects: React.FC = () => {
+interface ProjectsProps {
+  onProjectView?: (projectId: string) => void;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ onProjectView }) => {
   const [filter, setFilter] = useState('all');
 
   const projects = [
     {
-      id: 1,
+      id: 'hsg-prime-residency',
       title: "HSG Prime Residency",
       type: "residential",
       status: "completed",
@@ -17,7 +21,7 @@ const Projects: React.FC = () => {
       description: "Luxury residential complex with modern amenities and prime location access."
     },
     {
-      id: 2,
+      id: 'hsg-commercial-hub',
       title: "HSG Commercial Hub",
       type: "commercial",
       status: "ongoing",
@@ -28,7 +32,7 @@ const Projects: React.FC = () => {
       description: "State-of-the-art commercial complex designed for modern businesses."
     },
     {
-      id: 3,
+      id: 'hsg-green-farms',
       title: "HSG Green Farms",
       type: "farming",
       status: "completed",
@@ -90,6 +94,12 @@ const Projects: React.FC = () => {
     }
   };
 
+  const handleProjectClick = (projectId: string | number) => {
+    if (onProjectView && typeof projectId === 'string') {
+      onProjectView(projectId);
+    }
+  };
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,6 +147,7 @@ const Projects: React.FC = () => {
             <div
               key={project.id}
               className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer"
+              onClick={() => handleProjectClick(project.id)}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -178,7 +189,13 @@ const Projects: React.FC = () => {
                 </div>
 
                 <div className="mt-6 flex items-center justify-between">
-                  <button className="text-amber-600 font-medium text-sm hover:text-amber-700 transition-colors">
+                  <button 
+                    className="text-amber-600 font-medium text-sm hover:text-amber-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProjectClick(project.id);
+                    }}
+                  >
                     View Details
                   </button>
                   <ChevronRight className="h-4 w-4 text-amber-600 group-hover:translate-x-1 transition-transform" />

@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Building, MapPin, Calendar, Users, Clock, TrendingUp, ChevronRight } from 'lucide-react';
 
-const OngoingProjects: React.FC = () => {
+interface OngoingProjectsProps {
+  onProjectView?: (projectId: string) => void;
+}
+
+const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const ongoingProjects = [
     {
-      id: 1,
+      id: 'hsg-vista-apartments',
       title: "HSG Vista Apartments",
       type: "Residential",
       location: "Electronic City, Bangalore",
@@ -28,7 +32,7 @@ const OngoingProjects: React.FC = () => {
       ]
     },
     {
-      id: 2,
+      id: 'hsg-commercial-hub-phase-2',
       title: "HSG Commercial Hub Phase 2",
       type: "Commercial",
       location: "BTM Layout, Bangalore",
@@ -50,7 +54,7 @@ const OngoingProjects: React.FC = () => {
       ]
     },
     {
-      id: 3,
+      id: 'hsg-organic-estates',
       title: "HSG Organic Estates",
       type: "Farming",
       location: "Mysore Road, Bangalore",
@@ -72,7 +76,7 @@ const OngoingProjects: React.FC = () => {
       ]
     },
     {
-      id: 4,
+      id: 'hsg-premium-villas',
       title: "HSG Premium Villas",
       type: "Residential",
       location: "Sarjapur Road, Bangalore",
@@ -111,6 +115,12 @@ const OngoingProjects: React.FC = () => {
         return 'bg-green-100 text-green-800';
       default:
         return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const handleProjectClick = (projectId: string) => {
+    if (onProjectView) {
+      onProjectView(projectId);
     }
   };
 
@@ -169,11 +179,11 @@ const OngoingProjects: React.FC = () => {
 
         {/* Projects Grid */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {ongoingProjects.map((project) => (
+          {ongoingProjects.map((project, index) => (
             <div
               key={project.id}
               className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer"
-              onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
+              onClick={() => handleProjectClick(project.id)}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -243,7 +253,7 @@ const OngoingProjects: React.FC = () => {
                 </div>
 
                 {/* Expandable Details */}
-                {selectedProject === project.id && (
+                {selectedProject === index && (
                   <div className="mt-6 pt-6 border-t border-gray-100 space-y-4">
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Key Highlights</h4>
@@ -271,11 +281,17 @@ const OngoingProjects: React.FC = () => {
                 )}
 
                 <div className="mt-6 flex items-center justify-between">
-                  <button className="text-amber-600 font-medium text-sm hover:text-amber-700 transition-colors">
-                    {selectedProject === project.id ? 'Show Less' : 'View Details'}
+                  <button 
+                    className="text-amber-600 font-medium text-sm hover:text-amber-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProject(selectedProject === index ? null : index);
+                    }}
+                  >
+                    {selectedProject === index ? 'Show Less' : 'View Details'}
                   </button>
                   <ChevronRight className={`h-4 w-4 text-amber-600 transition-transform ${
-                    selectedProject === project.id ? 'rotate-90' : ''
+                    selectedProject === index ? 'rotate-90' : ''
                   }`} />
                 </div>
               </div>

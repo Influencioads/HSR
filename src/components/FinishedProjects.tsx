@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Building, MapPin, Calendar, Users, CheckCircle, Star, Award, ChevronRight } from 'lucide-react';
 
-const FinishedProjects: React.FC = () => {
+interface FinishedProjectsProps {
+  onProjectView?: (projectId: string) => void;
+}
+
+const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) => {
   const [filter, setFilter] = useState('all');
 
   const finishedProjects = [
     {
-      id: 1,
+      id: 'hsg-prime-residency',
       title: "HSG Prime Residency",
       type: "residential",
       location: "Jayanagar, Bangalore",
@@ -32,7 +36,7 @@ const FinishedProjects: React.FC = () => {
       }
     },
     {
-      id: 2,
+      id: 'hsg-tech-center',
       title: "HSG Tech Center",
       type: "commercial",
       location: "Whitefield, Bangalore",
@@ -58,7 +62,7 @@ const FinishedProjects: React.FC = () => {
       }
     },
     {
-      id: 3,
+      id: 'hsg-green-farms',
       title: "HSG Green Farms",
       type: "farming",
       location: "Kanakapura Road, Bangalore",
@@ -180,6 +184,12 @@ const FinishedProjects: React.FC = () => {
     }
   };
 
+  const handleProjectClick = (projectId: string | number) => {
+    if (onProjectView && typeof projectId === 'string') {
+      onProjectView(projectId);
+    }
+  };
+
   const totalStats = {
     projects: finishedProjects.length,
     totalInvestment: finishedProjects.reduce((sum, project) => sum + parseInt(project.investment.replace('₹', '').replace(' Crores', '')), 0),
@@ -267,7 +277,8 @@ const FinishedProjects: React.FC = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group"
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer"
+              onClick={() => handleProjectClick(project.id)}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -359,7 +370,13 @@ const FinishedProjects: React.FC = () => {
                     <span className="text-gray-600">Investment: </span>
                     <span className="font-semibold text-gray-900">{project.investment}</span>
                   </div>
-                  <button className="text-green-600 font-medium text-sm hover:text-green-700 transition-colors flex items-center">
+                  <button 
+                    className="text-green-600 font-medium text-sm hover:text-green-700 transition-colors flex items-center"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProjectClick(project.id);
+                    }}
+                  >
                     View Details
                     <ChevronRight className="h-4 w-4 ml-1" />
                   </button>
