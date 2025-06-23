@@ -28,19 +28,16 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
       ],
       units: 24,
       year: "2023",
-      investment: "₹8 Crores",
-      actualReturns: "11.5%",
-      projectedReturns: "10%",
       duration: "18 months",
       satisfaction: 98,
       description: "HSG Prime Residency stands as a testament to luxury living in the heart of Jayanagar. This premium residential complex features 24 meticulously designed units with modern amenities and world-class facilities.",
       highlights: [
         "Completed 2 months ahead of schedule",
-        "Exceeded projected returns by 1.5%",
         "100% unit sales within 6 months",
         "RERA certified project",
         "Vastu compliant design",
-        "Earthquake resistant structure"
+        "Earthquake resistant structure",
+        "Premium location advantage"
       ],
       amenities: [
         "Swimming Pool", "Gymnasium", "Children's Play Area", "24/7 Security",
@@ -59,13 +56,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         {
           name: "Rajesh Kumar",
           designation: "Software Engineer",
-          content: "HSG delivered exactly what they promised. The quality is exceptional and returns are better than expected.",
+          content: "HSG delivered exactly what they promised. The quality is exceptional and we're very satisfied with our investment.",
           rating: 5
         },
         {
           name: "Priya Sharma",
           designation: "Business Owner",
-          content: "The location is perfect and the amenities are world-class. Very satisfied with the investment.",
+          content: "The location is perfect and the amenities are world-class. Very satisfied with the overall experience.",
           rating: 5
         }
       ]
@@ -85,8 +82,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
       ],
       units: 32,
       year: "2024",
-      investment: "₹18 Crores",
-      projectedReturns: "10-12%",
       duration: "24 months",
       progress: 45,
       description: "HSG Commercial Hub is a state-of-the-art commercial complex designed for modern businesses. Located in the prime area of BTM Layout, it offers premium office spaces with world-class amenities.",
@@ -115,7 +110,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         {
           name: "Meera Nair",
           designation: "Real Estate Investor",
-          content: "Strategic location and quality construction made this project a huge success. Very satisfied with the progress.",
+          content: "Strategic location and quality construction made this project very promising. Very satisfied with the progress so far.",
           rating: 5
         }
       ]
@@ -135,17 +130,14 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
       ],
       units: 50,
       year: "2022",
-      investment: "₹6 Crores",
-      actualReturns: "14.8%",
-      projectedReturns: "13%",
       duration: "12 months",
       satisfaction: 100,
-      description: "HSG Green Farms represents our commitment to sustainable agriculture and environmental responsibility. This organic farming project offers excellent returns while promoting eco-friendly farming practices.",
+      description: "HSG Green Farms represents our commitment to sustainable agriculture and environmental responsibility. This organic farming project offers excellent quality while promoting eco-friendly farming practices.",
       highlights: [
         "Organic certification achieved",
         "Water source secured for 20 years",
         "Direct market tie-ups established",
-        "Highest returns in farming category",
+        "Highest satisfaction in farming category",
         "Sustainable farming practices",
         "Expert farm management"
       ],
@@ -166,7 +158,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         {
           name: "Arun Krishnan",
           designation: "Agricultural Investor",
-          content: "The farming project has been incredibly rewarding. Monthly returns are consistent and the organic produce quality is excellent.",
+          content: "The farming project has been incredibly rewarding. The organic produce quality is excellent and management is professional.",
           rating: 5
         }
       ]
@@ -297,8 +289,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-amber-600">{project.investment}</div>
-              <div className="text-sm text-gray-600">Total Investment</div>
+              <div className="text-2xl font-bold text-amber-600">{project.units} Units</div>
+              <div className="text-sm text-gray-600">Total Units</div>
             </div>
           </div>
         </div>
@@ -460,20 +452,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
             {/* Performance Metrics */}
             {project.status === 'completed' && (
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-6">Performance Metrics</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-6">Project Metrics</h3>
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center">
-                    <div className="text-3xl font-bold text-green-600 mb-1">{project.actualReturns}</div>
-                    <div className="text-sm text-gray-600 mb-1">Actual Returns</div>
-                    <div className="text-xs text-green-600 font-medium">vs {project.projectedReturns} projected</div>
-                  </div>
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
                     <div className="text-3xl font-bold text-blue-600 mb-1">{project.satisfaction}%</div>
-                    <div className="text-sm text-gray-600">Investor Satisfaction</div>
+                    <div className="text-sm text-gray-600">Customer Satisfaction</div>
                   </div>
                   <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-6 text-center">
                     <div className="text-3xl font-bold text-amber-600 mb-1">{project.duration}</div>
                     <div className="text-sm text-gray-600">Project Duration</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center">
+                    <div className="text-3xl font-bold text-green-600 mb-1">{project.year}</div>
+                    <div className="text-sm text-gray-600">Completion Year</div>
                   </div>
                 </div>
               </div>
@@ -496,8 +487,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
                   </div>
                 </div>
                 <div className="text-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4">
-                  <div className="text-2xl font-bold text-blue-600">{project.projectedReturns}</div>
-                  <div className="text-sm text-gray-600">Expected Returns</div>
+                  <div className="text-2xl font-bold text-blue-600">{project.duration}</div>
+                  <div className="text-sm text-gray-600">Expected Duration</div>
                 </div>
               </div>
             )}
@@ -533,11 +524,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
               </div>
             </div>
 
-            {/* Investment CTA */}
+            {/* CTA */}
             <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-6 text-white">
               <h3 className="text-lg font-bold mb-3">Interested in Similar Projects?</h3>
               <p className="text-amber-100 text-sm mb-6">
-                Explore our current investment opportunities and join our community of satisfied investors.
+                Explore our current opportunities and join our community of satisfied investors.
               </p>
               <button 
                 onClick={onBack}

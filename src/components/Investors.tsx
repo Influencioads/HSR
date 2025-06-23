@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, TrendingUp, Shield, DollarSign, Star, Quote } from 'lucide-react';
+import { Users, TrendingUp, Shield, Building, Star, Quote } from 'lucide-react';
 
 const Investors: React.FC = () => {
   const testimonials = [
@@ -8,7 +8,7 @@ const Investors: React.FC = () => {
       name: "Rajesh Kumar",
       title: "Senior Software Engineer",
       image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-      content: "HSG Projects has been my trusted partner for real estate investments for over 5 years. Their transparency and consistent returns have exceeded my expectations.",
+      content: "HSG Projects has been my trusted partner for real estate investments for over 5 years. Their transparency and quality have exceeded my expectations.",
       rating: 5,
       investment: "3 Projects"
     },
@@ -17,7 +17,7 @@ const Investors: React.FC = () => {
       name: "Priya Sharma",
       title: "Business Owner",
       image: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-      content: "The farming project investments have provided excellent monthly returns. HSG's commitment to quality and timely delivery is truly commendable.",
+      content: "The farming project investments have been excellent. HSG's commitment to quality and timely delivery is truly commendable.",
       rating: 5,
       investment: "2 Projects"
     },
@@ -35,8 +35,8 @@ const Investors: React.FC = () => {
   const benefits = [
     {
       icon: TrendingUp,
-      title: "Consistent Returns",
-      description: "Average monthly returns of 8-12% across our project portfolio"
+      title: "Quality Assurance",
+      description: "Uncompromising quality standards across all our project portfolio"
     },
     {
       icon: Shield,
@@ -44,9 +44,9 @@ const Investors: React.FC = () => {
       description: "All projects backed by proper documentation and legal compliance"
     },
     {
-      icon: DollarSign,
-      title: "Flexible Investment",
-      description: "Multiple investment options starting from ₹5 lakhs"
+      icon: Building,
+      title: "Diverse Portfolio",
+      description: "Multiple investment options across residential, commercial, and farming"
     },
     {
       icon: Users,
@@ -57,8 +57,8 @@ const Investors: React.FC = () => {
 
   const stats = [
     { number: "106+", label: "Happy Investors", icon: Users },
-    { number: "₹50Cr+", label: "Investments Managed", icon: DollarSign },
-    { number: "15+", label: "Successful Projects", icon: TrendingUp },
+    { number: "15+", label: "Successful Projects", icon: Building },
+    { number: "20+", label: "Years Experience", icon: TrendingUp },
     { number: "95%", label: "Investor Retention", icon: Shield }
   ];
 
@@ -76,7 +76,7 @@ const Investors: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             For over two decades, we've built lasting relationships with investors who trust us 
-            to deliver consistent returns and exceptional real estate opportunities.
+            to deliver exceptional quality and outstanding real estate opportunities.
           </p>
         </div>
 
@@ -149,7 +149,7 @@ const Investors: React.FC = () => {
           <h3 className="text-3xl font-bold mb-4">Ready to Join Our Investor Community?</h3>
           <p className="text-xl mb-8 text-amber-100 max-w-2xl mx-auto">
             Start your real estate investment journey with HSG Projects and experience 
-            the trust and returns that 106+ investors already enjoy.
+            the trust and quality that 106+ investors already enjoy.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="px-8 py-4 bg-white text-amber-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">

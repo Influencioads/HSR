@@ -33,7 +33,7 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">2005 - The Beginning</h3>
-                    <p className="text-gray-600">Started with a vision in a modest 200 sq ft office, committed to delivering consistent monthly income for investors through strategic real estate investments.</p>
+                    <p className="text-gray-600">Started with a vision in a modest 200 sq ft office, committed to delivering quality real estate solutions for investors through strategic investments.</p>
                   </div>
                 </div>
 
@@ -103,7 +103,7 @@ const About: React.FC = () => {
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
             <p className="text-gray-700 leading-relaxed">
-              To deliver consistent monthly income for our investors through strategic real estate investments, 
+              To deliver exceptional quality real estate solutions for our investors through strategic investments, 
               maintaining the highest standards of quality and transparency while building long-term wealth 
               creation opportunities in Bangalore's thriving real estate market.
             </p>

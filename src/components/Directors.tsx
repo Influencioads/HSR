@@ -9,8 +9,8 @@ const Directors: React.FC = () => {
       position: "Managing Director & Founder",
       image: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       experience: "20+ Years",
-      specialization: "Real Estate Development & Investment Strategy",
-      description: "Visionary leader who founded HSG Projects in 2005 with a commitment to delivering consistent returns for investors. Under his leadership, the company has grown from a 200 sq ft office to a 2,000 sq ft operation with 15+ successful projects.",
+      specialization: "Real Estate Development & Strategy",
+      description: "Visionary leader who founded HSG Projects in 2005 with a commitment to delivering quality solutions for investors. Under his leadership, the company has grown from a 200 sq ft office to a 2,000 sq ft operation with 15+ successful projects.",
       achievements: [
         "Founded HSG Projects in 2005",
         "Successfully delivered 15+ projects",
@@ -44,19 +44,19 @@ const Directors: React.FC = () => {
     {
       id: 3,
       name: "Priya Menon",
-      position: "Director - Finance & Investor Relations",
+      position: "Director - Investor Relations",
       image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       experience: "12+ Years",
-      specialization: "Financial Planning & Investor Management",
-      description: "Financial expert managing investor relations and ensuring transparent financial practices. Responsible for maintaining strong relationships with our 106+ investors.",
+      specialization: "Investor Management & Relations",
+      description: "Expert in managing investor relations and ensuring transparent practices. Responsible for maintaining strong relationships with our 106+ investors.",
       achievements: [
-        "Managed ₹50Cr+ in investments",
+        "Managed relationships with 106+ investors",
         "Maintained 95% investor retention rate",
         "Implemented transparent reporting systems",
         "Developed investor communication protocols"
       ],
       contact: {
-        email: "finance@hsgprojects.com",
+        email: "investors@hsgprojects.com",
         phone: "9844028282"
       }
     }
@@ -188,8 +188,8 @@ const Directors: React.FC = () => {
               <div className="text-amber-100">Investors Managed</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">₹50Cr+</div>
-              <div className="text-amber-100">Investments Handled</div>
+              <div className="text-4xl font-bold mb-2">95%</div>
+              <div className="text-amber-100">Satisfaction Rate</div>
             </div>
           </div>
         </div>

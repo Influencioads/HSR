@@ -17,20 +17,17 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
       image: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       units: 24,
       completedYear: "2023",
-      investment: "₹8 Crores",
-      actualReturns: "11.5%",
-      projectedReturns: "10%",
       duration: "18 months",
       satisfaction: 98,
       description: "Luxury residential complex with modern amenities completed ahead of schedule.",
       highlights: [
         "Completed 2 months ahead of schedule",
-        "Exceeded projected returns by 1.5%",
         "100% unit sales within 6 months",
-        "RERA certified project"
+        "RERA certified project",
+        "Excellent customer satisfaction"
       ],
       testimonial: {
-        text: "HSG delivered exactly what they promised. The quality is exceptional and returns are better than expected.",
+        text: "HSG delivered exactly what they promised. The quality is exceptional and we're very satisfied.",
         author: "Rajesh Kumar",
         designation: "Investor"
       }
@@ -43,9 +40,6 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
       image: "https://images.pexels.com/photos/2631613/pexels-photo-2631613.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       units: 28,
       completedYear: "2023",
-      investment: "₹15 Crores",
-      actualReturns: "13.2%",
-      projectedReturns: "12%",
       duration: "24 months",
       satisfaction: 96,
       description: "Premium office spaces designed for technology companies and startups.",
@@ -69,9 +63,6 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
       image: "https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       units: 50,
       completedYear: "2022",
-      investment: "₹6 Crores",
-      actualReturns: "14.8%",
-      projectedReturns: "13%",
       duration: "12 months",
       satisfaction: 100,
       description: "Sustainable farming project with organic certification and excellent yields.",
@@ -79,25 +70,22 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
         "Organic certification achieved",
         "Water source secured for 20 years",
         "Direct market tie-ups established",
-        "Highest returns in farming category"
+        "Highest satisfaction in farming category"
       ],
       testimonial: {
-        text: "The farming project has been incredibly rewarding. Monthly returns are consistent and the organic produce quality is excellent.",
+        text: "The farming project has been incredibly rewarding. The organic produce quality is excellent and management is professional.",
         author: "Arun Krishnan",
         designation: "Agricultural Investor"
       }
     },
     {
-      id: 4,
+      id: 'hsg-business-park',
       title: "HSG Business Park",
       type: "commercial",
       location: "Electronic City, Bangalore",
       image: "https://images.pexels.com/photos/2476632/pexels-photo-2476632.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       units: 32,
       completedYear: "2022",
-      investment: "₹12 Crores",
-      actualReturns: "12.8%",
-      projectedReturns: "11%",
       duration: "20 months",
       satisfaction: 94,
       description: "Modern business park with state-of-the-art facilities in IT corridor.",
@@ -108,22 +96,19 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
         "Excellent infrastructure"
       ],
       testimonial: {
-        text: "Strategic location and quality construction made this project a huge success. Very satisfied with the returns.",
+        text: "Strategic location and quality construction made this project a huge success. Very satisfied with the outcome.",
         author: "Meera Nair",
         designation: "Real Estate Investor"
       }
     },
     {
-      id: 5,
+      id: 'hsg-garden-homes',
       title: "HSG Garden Homes",
       type: "residential",
       location: "Sarjapur Road, Bangalore",
       image: "https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       units: 36,
       completedYear: "2021",
-      investment: "₹10 Crores",
-      actualReturns: "10.5%",
-      projectedReturns: "9.5%",
       duration: "22 months",
       satisfaction: 97,
       description: "Family-friendly residential project with extensive green spaces.",
@@ -134,22 +119,19 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
         "Strong community formation"
       ],
       testimonial: {
-        text: "Perfect family home with great community. The kids love the play areas and the returns have been steady.",
+        text: "Perfect family home with great community. The kids love the play areas and the quality is outstanding.",
         author: "Suresh Reddy",
         designation: "Family Investor"
       }
     },
     {
-      id: 6,
+      id: 'hsg-organic-orchards',
       title: "HSG Organic Orchards",
       type: "farming",
       location: "Mysore Road, Bangalore",
       image: "https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       units: 40,
       completedYear: "2021",
-      investment: "₹5 Crores",
-      actualReturns: "15.2%",
-      projectedReturns: "14%",
       duration: "10 months",
       satisfaction: 99,
       description: "Fruit orchard project with premium organic produce and export quality.",
@@ -160,7 +142,7 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
         "Highest satisfaction rating"
       ],
       testimonial: {
-        text: "Amazing returns from organic farming. The fruit quality is export-grade and the management is excellent.",
+        text: "Amazing results from organic farming. The fruit quality is export-grade and the management is excellent.",
         author: "Lakshmi Devi",
         designation: "Agricultural Investor"
       }
@@ -192,8 +174,7 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
 
   const totalStats = {
     projects: finishedProjects.length,
-    totalInvestment: finishedProjects.reduce((sum, project) => sum + parseInt(project.investment.replace('₹', '').replace(' Crores', '')), 0),
-    avgReturns: (finishedProjects.reduce((sum, project) => sum + parseFloat(project.actualReturns.replace('%', '')), 0) / finishedProjects.length).toFixed(1),
+    totalUnits: finishedProjects.reduce((sum, project) => sum + project.units, 0),
     avgSatisfaction: Math.round(finishedProjects.reduce((sum, project) => sum + project.satisfaction, 0) / finishedProjects.length)
   };
 
@@ -210,13 +191,13 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
             Successfully <span className="text-green-600">Delivered</span> Projects
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our portfolio of completed projects that have delivered exceptional returns 
-            and exceeded investor expectations across residential, commercial, and farming sectors.
+            Explore our portfolio of completed projects that have delivered exceptional quality 
+            and exceeded expectations across residential, commercial, and farming sectors.
           </p>
         </div>
 
         {/* Success Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
           <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
             <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4">
               <CheckCircle className="h-6 w-6 text-green-600" />
@@ -229,16 +210,8 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
             <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4">
               <Building className="h-6 w-6 text-blue-600" />
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₹{totalStats.totalInvestment}Cr</div>
-            <div className="text-gray-600 text-sm">Total Investment</div>
-          </div>
-          
-          <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-amber-100 rounded-full mb-4">
-              <Award className="h-6 w-6 text-amber-600" />
-            </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">{totalStats.avgReturns}%</div>
-            <div className="text-gray-600 text-sm">Average Returns</div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">{totalStats.totalUnits}</div>
+            <div className="text-gray-600 text-sm">Total Units Delivered</div>
           </div>
           
           <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
@@ -326,15 +299,10 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
                 </div>
 
                 {/* Performance Metrics */}
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="bg-green-50 rounded-lg p-3 text-center">
-                    <div className="text-lg font-bold text-green-600">{project.actualReturns}</div>
-                    <div className="text-xs text-gray-600">Actual Returns</div>
-                    <div className="text-xs text-green-600">vs {project.projectedReturns} projected</div>
-                  </div>
+                <div className="grid grid-cols-1 gap-4 mb-4">
                   <div className="bg-blue-50 rounded-lg p-3 text-center">
                     <div className="text-lg font-bold text-blue-600">{project.satisfaction}%</div>
-                    <div className="text-xs text-gray-600">Satisfaction</div>
+                    <div className="text-xs text-gray-600">Customer Satisfaction</div>
                     <div className="flex justify-center mt-1">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className={`h-3 w-3 ${i < Math.floor(project.satisfaction / 20) ? 'text-amber-400 fill-current' : 'text-gray-300'}`} />
@@ -367,8 +335,8 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
 
                 <div className="flex items-center justify-between">
                   <div className="text-sm">
-                    <span className="text-gray-600">Investment: </span>
-                    <span className="font-semibold text-gray-900">{project.investment}</span>
+                    <span className="text-gray-600">Completed: </span>
+                    <span className="font-semibold text-gray-900">{project.completedYear}</span>
                   </div>
                   <button 
                     className="text-green-600 font-medium text-sm hover:text-green-700 transition-colors flex items-center"
@@ -390,7 +358,7 @@ const FinishedProjects: React.FC<FinishedProjectsProps> = ({ onProjectView }) =>
         <div className="mt-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-8 lg:p-12 text-center text-white">
           <h3 className="text-3xl font-bold mb-4">Join Our Success Story</h3>
           <p className="text-xl mb-8 text-green-100 max-w-2xl mx-auto">
-            With 6 successfully completed projects and an average return of {totalStats.avgReturns}%, 
+            With 6 successfully completed projects and an average satisfaction rate of {totalStats.avgSatisfaction}%, 
             HSG Projects continues to deliver on its promises. Be part of our next success story.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -20,8 +20,6 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
       startDate: "January 2024",
       expectedCompletion: "December 2025",
       progress: 35,
-      investment: "₹12 Crores",
-      monthlyReturns: "8-10%",
       amenities: ["Swimming Pool", "Gym", "Children's Play Area", "24/7 Security", "Power Backup", "Parking"],
       description: "Premium residential complex in the heart of Electronic City with world-class amenities and modern architecture.",
       highlights: [
@@ -42,8 +40,6 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
       startDate: "March 2024",
       expectedCompletion: "August 2025",
       progress: 45,
-      investment: "₹18 Crores",
-      monthlyReturns: "10-12%",
       amenities: ["High-speed Elevators", "Central AC", "Conference Rooms", "Cafeteria", "Ample Parking", "24/7 Security"],
       description: "State-of-the-art commercial complex designed for modern businesses with premium office spaces.",
       highlights: [
@@ -64,8 +60,6 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
       startDate: "February 2024",
       expectedCompletion: "November 2024",
       progress: 60,
-      investment: "₹8 Crores",
-      monthlyReturns: "12-15%",
       amenities: ["Drip Irrigation", "Organic Certification", "Farm House", "Storage Facility", "Transportation", "Expert Guidance"],
       description: "Sustainable organic farming project offering excellent returns through agricultural investments.",
       highlights: [
@@ -86,8 +80,6 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
       startDate: "April 2024",
       expectedCompletion: "March 2026",
       progress: 25,
-      investment: "₹25 Crores",
-      monthlyReturns: "9-11%",
       amenities: ["Private Garden", "Swimming Pool", "Home Automation", "Solar Panels", "Clubhouse", "Security"],
       description: "Luxury villa project offering spacious homes with premium amenities and modern lifestyle.",
       highlights: [
@@ -138,7 +130,7 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover our current projects that are actively under development, offering excellent 
-            investment opportunities with guaranteed returns and quality construction.
+            opportunities with guaranteed quality construction and timely delivery.
           </p>
         </div>
 
@@ -156,16 +148,16 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
             <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 rounded-full mb-4">
               <TrendingUp className="h-6 w-6 text-white" />
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">₹63Cr</div>
-            <div className="text-gray-600 text-sm">Total Investment</div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">167</div>
+            <div className="text-gray-600 text-sm">Total Units</div>
           </div>
           
           <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 text-center">
             <div className="inline-flex items-center justify-center w-12 h-12 bg-amber-500 rounded-full mb-4">
               <Users className="h-6 w-6 text-white" />
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">167</div>
-            <div className="text-gray-600 text-sm">Total Units</div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">107</div>
+            <div className="text-gray-600 text-sm">Units Sold</div>
           </div>
           
           <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center">
@@ -238,20 +230,6 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
                   </div>
                 </div>
 
-                {/* Investment Info */}
-                <div className="mt-4 p-4 bg-amber-50 rounded-lg">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-sm text-gray-600">Investment Value</p>
-                      <p className="font-bold text-gray-900">{project.investment}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-600">Monthly Returns</p>
-                      <p className="font-bold text-green-600">{project.monthlyReturns}</p>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Expandable Details */}
                 {selectedProject === index && (
                   <div className="mt-6 pt-6 border-t border-gray-100 space-y-4">
@@ -301,10 +279,10 @@ const OngoingProjects: React.FC<OngoingProjectsProps> = ({ onProjectView }) => {
 
         {/* Investment CTA */}
         <div className="bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl p-8 lg:p-12 text-center text-white">
-          <h3 className="text-3xl font-bold mb-4">Invest in Ongoing Projects</h3>
+          <h3 className="text-3xl font-bold mb-4">Join Our Ongoing Projects</h3>
           <p className="text-xl mb-8 text-amber-100 max-w-2xl mx-auto">
-            Join our ongoing projects and secure your investment with guaranteed returns. 
-            Limited units available in each project.
+            Be part of our ongoing projects and experience the quality and excellence that 
+            HSG Projects is known for. Limited units available in each project.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="px-8 py-4 bg-white text-amber-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
